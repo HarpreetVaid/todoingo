@@ -20,6 +20,8 @@ var deleteCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		if taskfunc.Delete_task(cfgFile, deleteID) {
 			fmt.Println("Succesfully Delted the Task")
+		} else {
+			fmt.Println("Somthing Went Wrong")
 		}
 	},
 }
