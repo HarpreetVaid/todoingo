@@ -1,10 +1,11 @@
 /*
-Copyright © 2025 NAME HERE harry798677@gmail.com
+Copyright © 2025 Harpreet Singh harry798677@gmail.com
 */
 package cmd
 
 import (
 	"fmt"
+	"todolist/taskfunc"
 
 	"github.com/spf13/cobra"
 )
@@ -18,6 +19,7 @@ var updateCmd = &cobra.Command{
 	Long:  `Update an Task`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("update called")
+		taskfunc.Update_task(cfgFile, updateID)
 	},
 }
 

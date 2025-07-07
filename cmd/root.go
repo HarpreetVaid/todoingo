@@ -1,5 +1,5 @@
 /*
-Copyright © 2025 NAME HERE harry798677@gmail.com
+Copyright © 2025 Harpreet Singh harry798677@gmail.com
 */
 package cmd
 
@@ -70,16 +70,12 @@ func loadPreviousConfig() {
 	if cfgFile != "" {
 		// User provided --config, so save it
 		writeLastUsedConfig(cfgFile)
-		fmt.Println("New Config File is added and will be used.")
-		fmt.Println("Path is ", cfgFile)
 		return
 	}
 
 	// If not provided, try to load last used config
 	last := readLastUsedConfig()
 	if last != "" {
-		fmt.Println("New Config File is added and will be used.")
-		fmt.Println("Path is ", cfgFile)
 		cfgFile = last
 	} else {
 		fmt.Println("No config provided and no previous config found.")
