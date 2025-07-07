@@ -1,32 +1,51 @@
 /*
-Copyright © 2025 NAME HERE harry798677@gmail.com
+Copyright © 2025 Harpreet Singh harry798677@gmail.com
 */
 package taskfunc
 
 import (
+	"encoding/json"
 	"fmt"
 	"time"
 	"todolist/utils"
 )
 
 type TaskStruct struct {
-	task         string
-	status       string
-	creationTime int64
-	completeDate int64
+	Task_id      int    `json:"id"`
+	Task         string `json:"task"`
+	Status       string `json:"status"`
+	CreationTime int64  `json:"created_at"`
+	CompleteDate int64  `json:"completed_at"`
 }
 
 var taskList []TaskStruct
 
 func Add_task(cfgFile string, task string) bool {
+	encodedString := utils.Getfilecontent(cfgFile)
+	var id int = 0
+	if encodedString != "[]" {
+		err := json.Unmarshal([]byte(encodedString), &taskList)
+		if err != nil {
+			fmt.Println("Something went wrong in Reading File")
+			return false
+		}
+	}
+	if len(taskList) > 0 {
+		id = taskList[len(taskList)-1].Task_id + 1
+	}
 	newTask := TaskStruct{
-		task:         task,
-		status:       "InProgress",
-		creationTime: time.Now().Unix(),
-		completeDate: 0,
+		Task_id:      id,
+		Task:         task,
+		Status:       "InProgress",
+		CreationTime: time.Now().Unix(),
+		CompleteDate: -1,
 	}
 	taskList = append(taskList, newTask)
-	fileContent := utils.Getfilecontent(cfgFile)
-	fmt.Println("File Data is", fileContent)
+	data, err := json.Marshal(taskList)
+	if err != nil {
+		fmt.Println("Something went wrong in Converting JSON Object")
+		return false
+	}
+	utils.Savefilecontent(string(data), cfgFile)
 	return true
 }

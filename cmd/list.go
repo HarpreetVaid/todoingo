@@ -1,5 +1,5 @@
 /*
-Copyright © 2025 NAME HERE harry798677@gmail.com
+Copyright © 2025 Harpreet Singh harry798677@gmail.com
 */
 package cmd
 

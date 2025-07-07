@@ -1,5 +1,5 @@
 /*
-Copyright © 2025 NAME HERE harry798677@gmail.com
+Copyright © 2025 Harpreet Singh harry798677@gmail.com
 */
 package cmd
 
@@ -20,6 +20,8 @@ var deleteCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		if taskfunc.Delete_task(cfgFile, deleteID) {
 			fmt.Println("Succesfully Delted the Task")
+		} else {
+			fmt.Println("Somthing Went Wrong")
 		}
 	},
 }
